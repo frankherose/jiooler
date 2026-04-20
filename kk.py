@@ -215,7 +215,7 @@ def create_account(account_number, results):
             print(f"✅ [الحساب {account_number}] تم تحديد مربع الشروط")
         
         # الضغط على زر Finish
-        finish_button = wait.until(EC.element_to_be_clickable((By.XPATH, "//button[text()='Finish']")))
+        finish_button = wait.until(EC.element_to_be_clickable((By.XPATH, "//button[text()='Jetzt registrieren!']")))
         driver.execute_script("arguments[0].scrollIntoView(true);", finish_button)
         #time.sleep(0.5)
         driver.execute_script("arguments[0].click();", finish_button)
@@ -233,7 +233,7 @@ def create_account(account_number, results):
         
         # ========== الضغط على "Verify your number" ==========
         try:
-            verify_number_element = wait.until(EC.element_to_be_clickable((By.XPATH, "//span[text()='Verify your number']")))
+            verify_number_element = wait.until(EC.element_to_be_clickable((By.XPATH, "//span[text()='Verifiziere deine Nummer']")))
             driver.execute_script("arguments[0].scrollIntoView(true);", verify_number_element)
             #time.sleep(0.5)
             driver.execute_script("arguments[0].click();", verify_number_element)
@@ -242,7 +242,7 @@ def create_account(account_number, results):
             time.sleep(0.1)
             
             # ========== الضغط على زر Verify ==========
-            verify_button = wait.until(EC.element_to_be_clickable((By.XPATH, "//button[text()='Verify']")))
+            verify_button = wait.until(EC.element_to_be_clickable((By.XPATH, "//button[text()='Verifizieren']")))
             driver.execute_script("arguments[0].scrollIntoView(true);", verify_button)
            # time.sleep(0.5)
             driver.execute_script("arguments[0].click();", verify_button)
