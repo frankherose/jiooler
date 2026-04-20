@@ -148,7 +148,8 @@ def create_account(account_number, results):
     chrome_options.add_argument("--disable-blink-features=AutomationControlled")
     chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
     chrome_options.add_experimental_option('useAutomationExtension', False)
-    chrome_options.add_argument("--headless")
+    chrome_options.add_argument('--lang=en')
+    #chrome_options.add_argument("--headless")
     driver = webdriver.Chrome(options=chrome_options)
     driver.set_page_load_timeout(190)  # زيادة إلى 120 ثانية
     driver.set_script_timeout(190)
@@ -215,7 +216,7 @@ def create_account(account_number, results):
             print(f"✅ [الحساب {account_number}] تم تحديد مربع الشروط")
         
         # الضغط على زر Finish
-        finish_button = wait.until(EC.element_to_be_clickable((By.XPATH, "//button[text()='Jetzt registrieren!']")))
+        finish_button = wait.until(EC.element_to_be_clickable((By.XPATH, "//button[text()='Finish']")))
         driver.execute_script("arguments[0].scrollIntoView(true);", finish_button)
         #time.sleep(0.5)
         driver.execute_script("arguments[0].click();", finish_button)
@@ -233,7 +234,7 @@ def create_account(account_number, results):
         
         # ========== الضغط على "Verify your number" ==========
         try:
-            verify_number_element = wait.until(EC.element_to_be_clickable((By.XPATH, "//span[text()='Verifiziere deine Nummer']")))
+            verify_number_element = wait.until(EC.element_to_be_clickable((By.XPATH, "//span[text()='Verify your number']")))
             driver.execute_script("arguments[0].scrollIntoView(true);", verify_number_element)
             #time.sleep(0.5)
             driver.execute_script("arguments[0].click();", verify_number_element)
@@ -242,7 +243,7 @@ def create_account(account_number, results):
             time.sleep(0.1)
             
             # ========== الضغط على زر Verify ==========
-            verify_button = wait.until(EC.element_to_be_clickable((By.XPATH, "//button[text()='Verifizieren']")))
+            verify_button = wait.until(EC.element_to_be_clickable((By.XPATH, "//button[text()='Verify']")))
             driver.execute_script("arguments[0].scrollIntoView(true);", verify_button)
            # time.sleep(0.5)
             driver.execute_script("arguments[0].click();", verify_button)
@@ -270,7 +271,15 @@ def create_account(account_number, results):
                 "error": str(e)
             })
         
+        
+        wait = WebDriverWait(driver, 70)
+        button = wait.until(
+        EC.element_to_be_clickable((By.CSS_SELECTOR, "p.ui-typography.ui-typography_size_lg.ui-typography_kind_brand-color-3-500"))
+    )
+        button.click()
+        print("تم الضغط على الزر بنجاح")
         print(f"✅ [الحساب {account_number}] اكتملت العملية بنجاح")
+
         time.sleep(4)
         
     except Exception as e:
@@ -310,7 +319,7 @@ def main():
         thread.start()
         
         # انتظار قليلاً بين بدء الخيوط لتجنب التحميل الزائد
-        time.sleep(50.111)
+        time.sleep(1.111)
     
     # انتظار اكتمال جميع الخيوط
     for thread in threads:
