@@ -149,7 +149,7 @@ def create_account(account_number, results):
     chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
     chrome_options.add_experimental_option('useAutomationExtension', False)
     chrome_options.add_argument('--lang=en')
-    #chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--headless")
     driver = webdriver.Chrome(options=chrome_options)
     driver.set_page_load_timeout(190)  # زيادة إلى 120 ثانية
     driver.set_script_timeout(190)
@@ -304,7 +304,7 @@ def main():
     print("=" * 60)
     
     # تحديد عدد الحسابات المطلوب إنشاؤها
-    num_accounts = 1  # يمكنك تغيير هذا الرقم حسب حاجتك
+    num_accounts = 4  # يمكنك تغيير هذا الرقم حسب حاجتك
     
     print(f"📊 عدد الحسابات المطلوب إنشاؤها: {num_accounts}")
     print("=" * 60)
