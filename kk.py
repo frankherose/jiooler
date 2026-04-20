@@ -148,7 +148,7 @@ def create_account(account_number, results):
     chrome_options.add_argument("--disable-blink-features=AutomationControlled")
     chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
     chrome_options.add_experimental_option('useAutomationExtension', False)
-   #chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--headless")
     driver = webdriver.Chrome(options=chrome_options)
     driver.set_page_load_timeout(190)  # زيادة إلى 120 ثانية
     driver.set_script_timeout(190)
